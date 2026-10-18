@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kavesh's AI Prompt Manager</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="logo">KJ</div>
+
+            <div class="brand-text">
+                <h2>Kavesh's</h2>
+                <span>AI Prompt Manager</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <p class="nav-title">MENU</p>
+
+            <button class="nav-item active" data-section="dashboard">
+                <span>▦</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-section="prompts">
+                <span>▤</span>
+                All Prompts
+            </button>
+
+            <button class="nav-item" data-section="favorites">
+                <span>☆</span>
+                Favorites
+            </button>
+
+            <button class="nav-item" data-section="categories">
+                <span>⌗</span>
+                Categories
+            </button>
+
+            <p class="nav-title settings-title">SYSTEM</p>
+
+            <button class="nav-item" id="themeBtn">
+                <span>☼</span>
+                Light Theme
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="creator-card">
+                <div class="creator-logo">KJ</div>
+
+                <div>
+                    <strong>Kavesh</strong>
+                    <small>Prompt Creator</small>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu">
+                ☰
+            </button>
+
+            <div class="mobile-brand">
+                <div class="logo small-logo">KJ</div>
+                <strong>Kavesh's AI Prompt Manager</strong>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search prompts..."
+                    >
+                    <kbd>⌘ K</kbd>
+                </div>
+
+                <button class="icon-button" title="Notifications">
+                    ♧
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="profile">
+                    <div class="profile-avatar">K</div>
+
+                    <div class="profile-info">
+                        <strong>Kavesh</strong>
+                        <span>Creator</span>
+                    </div>
+
+                    <span class="profile-arrow">⌄</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <section class="content">
+
+            <!-- DASHBOARD -->
+
+            <div id="dashboardSection" class="page-section active-section">
+
+                <div class="page-heading">
+
+                    <div>
+                        <p class="eyebrow">YOUR WORKSPACE</p>
+
+                        <h1>
+                            Welcome back, Kavesh
+                            <span>👋</span>
+                        </h1>
+
+                        <p class="subtitle">
+                            Organize, manage and reuse your favorite AI prompts.
+                        </p>
+                    </div>
+
+                    <button class="primary-btn" id="openModalBtn">
+                        <span>+</span>
+                        New Prompt
+                    </button>
+
+                </div>
+
+
+                <!-- STATISTICS -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            ▤
+                        </div>
+
+                        <div>
+                            <span>Total Prompts</span>
+                            <h2 id="totalPrompts">0</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon yellow">
+                            ★
+                        </div>
+
+                        <div>
+                            <span>Favorites</span>
+                            <h2 id="favoriteCount">0</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            #
+                        </div>
+
+                        <div>
+                            <span>Categories</span>
+                            <h2 id="categoryCount">0</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            ✓
+                        </div>
+
+                        <div>
+                            <span>Copied</span>
+                            <h2 id="copiedCount">0</h2>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROMPT AREA -->
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>My Prompts</h2>
+                        <p>Quick access to your saved prompts.</p>
+                    </div>
+
+                    <button class="view-all" id="viewAllBtn">
+                        View All →
+                    </button>
+
+                </div>
+
+
+                <!-- CATEGORY FILTER -->
+
+                <div class="category-filter" id="categoryFilter">
+
+                    <button class="filter-btn active" data-category="All">
+                        All
+                    </button>
+
+                    <button class="filter-btn" data-category="Coding">
+                        Coding
+                    </button>
+
+                    <button class="filter-btn" data-category="Marketing">
+                        Marketing
+                    </button>
+
+                    <button class="filter-btn" data-category="Writing">
+                        Writing
+                    </button>
+
+                    <button class="filter-btn" data-category="Business">
+                        Business
+                    </button>
+
+                    <button class="filter-btn" data-category="Design">
+                        Design
+                    </button>
+
+                </div>
+
+
+                <!-- PROMPT GRID -->
+
+                <div class="prompt-grid" id="promptGrid"></div>
+
+            </div>
+
+
+            <!-- ALL PROMPTS -->
+
+            <div id="promptsSection" class="page-section">
+
+                <div class="page-heading">
+
+                    <div>
+                        <p class="eyebrow">LIBRARY</p>
+                        <h1>All Prompts</h1>
+                        <p class="subtitle">
+                            Browse and manage your complete prompt collection.
+                        </p>
+                    </div>
+
+                    <button class="primary-btn" id="openModalBtn2">
+                        <span>+</span>
+                        New Prompt
+                    </button>
+
+                </div>
+
+                <div class="prompt-grid" id="allPromptGrid"></div>
+
+            </div>
+
+
+            <!-- FAVORITES -->
+
+            <div id="favoritesSection" class="page-section">
+
+                <div class="page-heading">
+
+                    <div>
+                        <p class="eyebrow">SAVED</p>
+                        <h1>Favorite Prompts</h1>
+                        <p class="subtitle">
+                            Your most useful prompts in one place.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="prompt-grid" id="favoriteGrid"></div>
+
+            </div>
+
+
+            <!-- CATEGORIES -->
+
+            <div id="categoriesSection" class="page-section">
+
+                <div class="page-heading">
+
+                    <div>
+                        <p class="eyebrow">ORGANIZE</p>
+                        <h1>Categories</h1>
+                        <p class="subtitle">
+                            Browse your prompts by category.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="category-cards" id="categoryCards"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div class="modal-overlay" id="modalOverlay">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <p class="eyebrow">PROMPT LIBRARY</p>
+                    <h2 id="modalTitle">Create New Prompt</h2>
+                </div>
+
+                <button class="close-btn" id="closeModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="promptForm">
+
+                <input type="hidden" id="editPromptId">
+
+                <div class="form-group">
+
+                    <label for="promptTitle">
+                        Prompt Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="promptTitle"
+                        placeholder="e.g. Website Landing Page"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="promptCategory">
+                        Category
+                    </label>
+
+                    <select id="promptCategory" required>
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="Coding">
+                            Coding
+                        </option>
+
+                        <option value="Marketing">
+                            Marketing
+                        </option>
+
+                        <option value="Writing">
+                            Writing
+                        </option>
+
+                        <option value="Business">
+                            Business
+                        </option>
+
+                        <option value="Design">
+                            Design
+                        </option>
+
+                        <option value="Productivity">
+                            Productivity
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="promptText">
+                        Prompt
+                    </label>
+
+                    <textarea
+                        id="promptText"
+                        rows="7"
+                        placeholder="Write your AI prompt here..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="promptTags">
+                        Tags
+                    </label>
+
+                    <input
+                        type="text"
+                        id="promptTags"
+                        placeholder="AI, Website, UI, Design"
+                    >
+
+                    <small>
+                        Separate tags with commas.
+                    </small>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelModal"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Save Prompt
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= PROMPT VIEW MODAL ================= -->
+
+    <div class="modal-overlay" id="viewModalOverlay">
+
+        <div class="view-modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="view-category" id="viewCategory">
+                        Coding
+                    </span>
+
+                    <h2 id="viewTitle">
+                        Prompt Title
+                    </h2>
+                </div>
+
+                <button class="close-btn" id="closeViewModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="full-prompt" id="viewPrompt">
+            </div>
+
+
+            <div class="view-tags" id="viewTags"></div>
+
+
+            <div class="view-actions">
+
+                <button class="secondary-btn" id="viewEditBtn">
+                    ✎ Edit
+                </button>
+
+                <button class="primary-btn" id="viewCopyBtn">
+                    ▣ Copy Prompt
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span id="toastMessage">Prompt copied!</span>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
